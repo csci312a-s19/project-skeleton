@@ -54,36 +54,13 @@ and
 npm run lint --prefix server
 ```
 
-To ensure consistent style we use the CRA-recommended [Prettier](https://github.com/prettier/prettier) package. We installed it in the "top-level" package with
-
-```
-npm install --save-dev husky lint-staged prettier
-```
-
-and added the recommended configuration to automatically reformat code during the commit. That is whenever you commit your code, Prettier will automatically reformat your code during the commit process (as a "hook"). The hook is specified in the top-level `package.json` file. The client and server has its own ESLint configuration.
-
-We added custom ESLint rules to capture common errors. To ensure compatibility with Prettier, we also installed the `eslint-config-prettier` package in both the client and server to disable styling rules that conflict with Prettier.
-
-```
-npm install --save-dev eslint-config-prettier --prefix server
-npm install --save-dev eslint-config-prettier --prefix client
-```
-
-and added an `"extends"` entry to `.eslintrc.json`.
-
 ## Continuous Integration
 
 The skeleton is setup for CI with Travis-CI. Travis will build the client and test and lint both the client and the server.
 
 ## Deploying to Heroku
 
-Your application can be deployed to [Heroku](heroku.com) using the approach demonstrated in this [repository](https://github.com/mars/heroku-cra-node). The key additions to the top-level `package.json` file to enable Heroku deployment:
-
-* Specify the node version in the `engines` field
-* Add a `heroku-postbuild` script field that will install dependencies for the client and server and create the production build of the client application.
-* Specify that `node_modules` should be cached to optimize build time
-
-In addition a `Procfile` was added in the top-level package to start the server.
+Your application can be deployed to [Heroku](heroku.com) using the approach demonstrated in this [repository](https://github.com/mars/heroku-cra-node).
 
 Assuming that you have a Heroku account, have installed the [Heroku command line tools](https://devcenter.heroku.com/articles/heroku-cli) and committed any changes to the application, to deploy to Heroku:
 
@@ -116,3 +93,30 @@ Your project can be deployed to basin.cs.middlebury.edu (where it is typically r
   	```
   	NODE_ENV=production PORT=5042 npm run start --prefix server
   	```
+
+## How We Created the Skeleton
+
+To ensure consistent style we use the CRA-recommended [Prettier](https://github.com/prettier/prettier) package. We installed it in the "top-level" package with
+
+```
+npm install --save-dev husky lint-staged prettier
+```
+
+and added the recommended configuration to automatically reformat code during the commit. That is whenever you commit your code, Prettier will automatically reformat your code during the commit process (as a "hook"). The hook is specified in the top-level `package.json` file. The client and server has its own ESLint configuration.
+
+We added custom ESLint rules to capture common errors. To ensure compatibility with Prettier, we also installed the `eslint-config-prettier` package in both the client and server to disable styling rules that conflict with Prettier.
+
+```
+npm install --save-dev eslint-config-prettier --prefix server
+npm install --save-dev eslint-config-prettier --prefix client
+```
+
+and added an `"extends"` entry to `.eslintrc.json`.
+
+To enable Heroku deployment we added the following to the top-level `package.json` file:
+
+* Specify the node version in the `engines` field
+* Add a `heroku-postbuild` script field that will install dependencies for the client and server and create the production build of the client application.
+* Specify that `node_modules` should be cached to optimize build time
+
+In addition a `Procfile` was added in the top-level package to start the server.

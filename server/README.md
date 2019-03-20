@@ -20,7 +20,9 @@ npm test
 
 ### Linting with ESLint
 
-The server is configured with the [AirBnB ESLint rules](https://github.com/airbnb/javascript). You can run the linter with `npm run lint` or `npx eslint .`. The rules were installed with:
+The server is configured with the [AirBnB ESLint rules](https://github.com/airbnb/javascript). You can run the linter with `npm run lint` or `npx eslint .`. Include the `--fix` option to `eslint` to automatically fix many formatting errors, e.g. `npm run lint -- --fix`, although note that the "fix" option can introduce errors so we recommended committing beforehand.
+
+For reference, the ESLint rules were installed with:
 
 ```
 npx install-peerdeps --dev eslint-config-airbnb-base
@@ -37,5 +39,3 @@ and `.eslintrc.json` configured with:
   }
 }
 ```
-
-The linter can be run with `npx eslint .` (or via `npm run lint`). Include the `--fix` option to `eslint` to automatically fix many formatting errors.

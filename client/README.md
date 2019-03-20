@@ -14,7 +14,7 @@ The development server will attempt to proxy API requests to the server specifie
 
 The tests use both Jest and Enzyme has described in the [CRA documentation](https://facebook.github.io/create-react-app/docs/running-tests).
 
-Enzyme was installed with:
+For reference Enzyme was installed with:
 
 ```
 npm install --save-dev enzyme enzyme-adapter-react-16 react-test-renderer
@@ -22,13 +22,15 @@ npm install --save-dev enzyme enzyme-adapter-react-16 react-test-renderer
 
 ### Linting
 
-You can run the linter with `npm run lint` or `npx eslint .`. A custom ESLint configuration is provided as described in the top-level README. We the Prettier ESlint configuration to prevent conflicts with that tool.
+You can run the linter with `npm run lint` or `npx eslint .`. Include the `--fix` option to `eslint` to automatically fix many formatting errors, e.g. `npm run lint -- --fix`, although note that the "fix" option can introduce errors so we recommended committing beforehand.
+
+For reference a custom ESLint configuration is provided as described in the top-level README. We installed the Prettier ESlint configuration to prevent conflicts with that tool via
 
 ```
 npm install --save-dev eslint-config-prettier
 ```
 
-The `.eslintrc.json` configuration is:
+and updated the `.eslintrc.json` configuration to be:
 
 ```
 {
