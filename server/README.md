@@ -39,3 +39,7 @@ and `.eslintrc.json` configured with:
   }
 }
 ```
+
+### Managing Secrets
+
+The skeleton uses the [dotenv](https://www.npmjs.com/package/dotenv) package to load the variables in the .env file into the environment when starting the server. You can place secrets, e.g. API keys or database passwords, into that file. Those secrets should not be committed into your version control system. To prevent you from doing so, the .env file is included in the .gitignore file (so that it will be ignored by Git).

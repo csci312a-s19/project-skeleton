@@ -7,8 +7,8 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint .",
-    "start": "node index.js",
-    "watch": "nodemon --ignore '*.test.js' index.js"
+    "start": "node -r dotenv/config index.js",
+    "watch": "nodemon --exec 'node -r dotenv/config' --ignore '*.test.js' index.js"
   },
   "keywords": [],
   "contributors": [
@@ -25,6 +25,7 @@
     "nodemon": "^1.18.10"
   },
   "dependencies": {
+    "dotenv": "^7.0.0",
     "express": "^4.16.4"
   }
 }
