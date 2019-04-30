@@ -78,7 +78,42 @@ Assuming that you have a Heroku account, have installed the [Heroku command line
     git push heroku master
     ```
 
-Depending on how you implement your server, you will likely need create "addons" for your database, etc. and migrate then seed your database before you deploy.
+Depending on how you implement your server, you will likely need create "add-ons" for your database, etc. and migrate then seed your database before you deploy.
+
+### Heroku with RDBMS
+
+Heroku provides a free add-on with the PostgreSQL database. Provision the add-on with the following command. The provisioning will define `process.env.DATABASE_URL` in the Heroku environment (which can be used by your database interface, e.g. by Knex in its configuration file).
+
+```
+heroku addons:create heroku-postgresql:hobby-dev
+```
+
+Once you have deployed your application (and provisioned the database) migrate and seed the database on Heroku with the following commands. `heroku run` executes the specified command in the context of your application on the Heroku servers.
+
+```
+heroku run 'cd server && npx knex migrate:latest'
+heroku run 'cd server && npx knex seed:run'
+```
+
+You can test your backend without pushing to Heroku. The database Heroku created for you is accessible from anywhere. Use `heroku config` to obtain the `DATABASE_URL` variable. Define that variable locally with `?ssl=true` appended, e.g.
+
+```
+export DATABASE_URL="postgres://...?ssl=true"
+```
+
+then start your server locally in production mode, e.g. `NODE_ENV=production npm start --prefix server`.
+
+You can also directly access your PostgreSQL database. Download and install one of the many PostgreSQL clients and use the `DATABASE_URL` from Heroku for the connection information.
+
+### Heroku with MongoDB
+
+Heroku has several MongoDB add-ons. Provision a free MongoDB add-on with:
+
+```
+heroku addons:create mongolab:sandbox
+```
+
+Once you have deployed your application (and provisioned the database) seed the database on Heroku with `mongoimport`. You will need the `MONGODB_URI` from `heroku config`.
 
 ## Deploying to Basin
 
